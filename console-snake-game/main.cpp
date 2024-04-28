@@ -1,7 +1,8 @@
 #include "header.h"
 
 bool gameover;
-const int width, height = 20;
+const int width = 20;
+const int height = 20;
 int x, y, fX, fY, score;
 
 enum eDir
@@ -12,6 +13,11 @@ enum eDir
 	RIGHT,
 	LEFT
 };
+
+void setup();
+void draw();
+void input();
+void logic();
 
 int main()
 {
@@ -28,15 +34,36 @@ int main()
 void setup()
 {
 	gameover = false;
-	x, y = STOP;
-	fX = rand() % width;
-	fY = rand() % height;
+	x = width / 2;
+	y = height / 2;
 	score = 0;
 }
 
 void draw()
 {
+	system("cls");
+	for (int x = 0; x < width +1; x++)
+	{
+		cout << "#";
+	}
+	cout << endl;
 
+	for (int x = 0; x < height; x++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			if (j == 0 || j == width - 1)
+				cout << "#";
+			cout << " ";
+		}
+		cout << endl;
+	}
+
+	for (int x = 0; x < width +1; x++)
+	{
+		cout << "#";
+	}
+	cout << endl;
 }
 
 void input()
