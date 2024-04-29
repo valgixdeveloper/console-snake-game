@@ -1,77 +1,50 @@
 #include "header.h"
 
-bool gameover;
-const int width = 20;
-const int height = 20;
-int x, y, fX, fY, score;
+const int width = 17;
+const int height = 10;
+const int max_len_snake = (width - 3) * (height - 2);
 
-enum eDir
-{
-	STOP = 0,
-	UP,
-	DOWN,
-	RIGHT,
-	LEFT
-};
+const int up = 0;
+const int down = 1;
+const int left = 2;
+const int right = 3;
 
-void setup();
-void draw();
-void input();
-void logic();
+int snake_dir = up;
+
+bool isRunning = true;
+
+char snake = 'O';
+int snake_x[max_len_snake] = { 0 };
+int snake_y[max_len_snake] = { 0 };
+int snake_len = 1;
+
 
 int main()
 {
-	setup();
-	while (!gameover)
-	{
-		draw();
-		input();
-		logic();
-	}
-	return 0;
-}
+	SetConsoleTitle(L"Snake Game by ValgixDeveloper");
 
-void setup()
-{
-	gameover = false;
-	x = width / 2;
-	y = height / 2;
-	score = 0;
-}
+	snake_x[0] = width / 2;
+	snake_y[0] = height / 2;
+	int time = clock();
 
-void draw()
-{
-	system("cls");
-	for (int x = 0; x < width +1; x++)
+	while (isRunning)
 	{
-		cout << "#";
-	}
-	cout << endl;
 
-	for (int x = 0; x < height; x++)
-	{
-		for (int j = 0; j < width; j++)
+		gotoxy(0, 0);
+
+		cout << "Length: " << snake_len << endl;
+		for (int i = 0; i < snake_len; ++i)
 		{
-			if (j == 0 || j == width - 1)
-				cout << "#";
-			cout << " ";
+			map[snake_y[i] * width + snake_x[i]] = snake;
 		}
-		cout << endl;
+
+		cout << map;
+
+		for (int i = 0; i < snake_len; ++i)
+		{
+			map[snake_y[i] * width + snake_x[i]] = ' ';
+		}
 	}
 
-	for (int x = 0; x < width +1; x++)
-	{
-		cout << "#";
-	}
-	cout << endl;
-}
-
-void input()
-{
-
-}
-
-void logic()
-{
-
+	return 0;
 }
