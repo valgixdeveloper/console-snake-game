@@ -27,22 +27,27 @@ int main()
 	snake_y[0] = height / 2;
 	int time = clock();
 
+	cout << "Loading..";
+
 	while (isRunning)
 	{
-
-		gotoxy(0, 0);
-
-		cout << "Length: " << snake_len << endl;
-		for (int i = 0; i < snake_len; ++i)
+		if ((clock() - time) / CLOCKS_PER_SEC >= 1)
 		{
-			map[snake_y[i] * width + snake_x[i]] = snake;
-		}
+			time = clock();
+			gotoxy(0, 0);
 
-		cout << map;
+			cout << "Length: " << snake_len << endl;
+			for (int i = 0; i < snake_len; ++i)
+			{
+				map[snake_y[i] * width + snake_x[i]] = snake;
+			}
 
-		for (int i = 0; i < snake_len; ++i)
-		{
-			map[snake_y[i] * width + snake_x[i]] = ' ';
+			cout << map;
+
+			for (int i = 0; i < snake_len; ++i)
+			{
+				map[snake_y[i] * width + snake_x[i]] = ' ';
+			}
 		}
 	}
 
